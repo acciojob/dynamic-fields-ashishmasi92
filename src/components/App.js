@@ -5,7 +5,6 @@ import './../styles/App.css';
 const App = () => {
 
   let [inputList, setInputList] = useState([{ name: "", age: "" }])
-  let [inputval, setInputval] = useState([{ name: "", age: "" }])
 
   function changeInput(e, index) {
     let { name, value } = e.target;
@@ -38,8 +37,8 @@ function removeInput(index){
       {
         inputList.map((v, i) => {
           return (
-            <>
-              <div>
+            
+              <div key={i} >
                 <input
                   type="text"
                   name="name"
@@ -56,15 +55,15 @@ function removeInput(index){
                   removeInput(i)
                 }}  >Remove</button>
               </div>
-            </>
+            
           )
         })
       }
-      <button onClick={(e) => {
-        setInputList([...inputList, { name: "", age: "" }])
-      }} >Add more</button>
+     <button onClick={() => setInputList([...inputList, { name: "", age: "" }])}>
+  Add More..
+</button>
       <button onClick={(e)=>{
-          e.stopPropagation()
+          e.preventDefault()
       console.log("Submit Data ",inputList);
       
       }}>Submit</button>
